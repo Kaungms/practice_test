@@ -17,6 +17,10 @@ export default function QuotationTable() {
   const [editText, setEditText] = useState("");
   const [editAuthor, setEditAuthor] = useState("");
 
+  // Add these states for the add form
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newText, setNewText] = useState("");
+
   const handleEdit = (quote) => {
     setEditId(quote.id);
     setEditText(quote.text);
@@ -36,9 +40,39 @@ export default function QuotationTable() {
     setQuotes(quotes.filter((q) => q.id !== id));
   };
 
+  // Add this function to handle adding a new quote
+  const handleAdd = () => {
+    if (newAuthor.trim() && newText.trim()) {
+      setQuotes([
+        ...quotes,
+        {
+          id: quotes.length ? Math.max(...quotes.map((q) => q.id)) + 1 : 1,
+          author: newAuthor,
+          text: newText,
+        },
+      ]);
+      setNewAuthor("");
+      setNewText("");
+    }
+  };
+
   return (
     <div className="quotation-table">
       <h1>Quotation Table</h1>
+      {/* Add Quote Form */}
+      <div style={{ marginBottom: "1em" }}>
+        <input
+          placeholder="Author"
+          value={newAuthor}
+          onChange={(e) => setNewAuthor(e.target.value)}
+        />
+        <input
+          placeholder="Quote"
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+        />
+        <button onClick={handleAdd}>Add Quote</button>
+      </div>
       <table>
         <thead>
           <tr>

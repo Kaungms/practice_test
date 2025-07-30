@@ -1,83 +1,376 @@
+/* Modern gradient background */
+body, #root {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.app-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 .quotation-table {
-  max-width: 700px;
-  margin: 2em auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  padding: 2em;
+  max-width: 900px;
+  min-width: 350px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 8px 32px rgba(102, 126, 234, 0.1);
+  padding: 3em 2.5em 2.5em 2.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .quotation-table h1 {
-  color: #646cff;
-  margin-bottom: 1em;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2em;
+  font-size: 2.8em;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: -2px;
+  position: relative;
 }
 
-.quotation-table form,
-.quotation-table > div {
+.quotation-table h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.add-quote-form {
   display: flex;
-  gap: 1em;
-  margin-bottom: 2em;
-  align-items: center;
+  gap: 1.2em;
+  margin-bottom: 2.5em;
+  width: 100%;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
-.quotation-table input {
-  padding: 0.5em 1em;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.add-quote-form input {
+  padding: 1em 1.2em;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.1);
   font-size: 1em;
-  flex: 1 1 150px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #2d3748;
+  min-width: 140px;
+  flex: 1;
+  max-width: 200px;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-.quotation-table button {
-  padding: 0.5em 1.2em;
-  border-radius: 6px;
+.add-quote-form input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-2px);
+}
+
+.add-quote-form input::placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.add-btn {
+  padding: 1em 2em;
+  border-radius: 12px;
   border: none;
-  background: #646cff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
-  margin-right: 0.5em;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
 }
 
-.quotation-table button:hover {
-  background: #535bf2;
+.add-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.add-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.add-btn:hover::before {
+  left: 100%;
+}
+
+.add-btn:active {
+  transform: translateY(-1px);
 }
 
 .quotation-table table {
   width: 100%;
-  border-collapse: collapse;
-  background: #f9f9f9;
-  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .quotation-table th {
-  background: #646cff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
-  padding: 0.8em;
+  padding: 1.2em 1em;
   font-weight: 700;
   text-align: left;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9em;
 }
 
 .quotation-table td {
-  padding: 0.8em;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 0.9em;
+  padding: 1.2em 1em;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  font-size: 1em;
   vertical-align: middle;
-  color: #222;
+  color: #2d3748;
+  line-height: 1.6;
+  transition: all 0.3s ease;
 }
 
-.quotation-table tr:hover {
-  background: #f0f4ff;
+.quotation-table tr:last-child td {
+  border-bottom: none;
 }
 
-.quotation-table .save-btn {
-  background: #22c55e;
+.quotation-table tbody tr {
+  transition: all 0.3s ease;
 }
 
-.quotation-table .cancel-btn {
-  background: #f87171;
+.quotation-table tbody tr:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  transform: scale(1.01);
+}
+
+.quotation-table tbody tr:hover td {
+  color: #1a202c;
+}
+
+.quotation-table input[type="text"], 
+.quotation-table input:not([type]),
+.quotation-table td input {
+  padding: 0.8em 1em;
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  font-size: 1em;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748;
+  width: calc(100% - 2em);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.quotation-table td input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.save-btn, .cancel-btn, .edit-btn, .delete-btn {
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+}
+
+.cancel-btn {
+  background: linear-gradient(135deg, #f56565, #e53e3e);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(245, 101, 101, 0.3);
+}
+
+.cancel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 101, 101, 0.4);
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #4299e1, #3182ce);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3);
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ed8936, #dd6b20);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(237, 137, 54, 0.3);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 137, 54, 0.4);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 3em 2em;
+  color: #718096;
+}
+
+.empty-state h3 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #4a5568;
+}
+
+.empty-state p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* Totals box */
+.totals-box {
+  background: #f3f4f6;
+  border-radius: 16px;
+  padding: 1.5em 2em;
+  box-shadow: 0 4px 24px rgba(102,126,234,0.10);
+  min-width: 280px;
+  max-width: 340px;
+  margin: 2em auto 0 auto;
+  text-align: center;
+  color: #232323;
+  font-size: 1.08em;
+  font-style: normal;
+  font-weight: 500;
+  display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .quotation-table {
+    padding: 2em 1.5em;
+    margin: 10px;
+  }
+  
+  .quotation-table h1 {
+    font-size: 2.2em;
+  }
+  
+  .add-quote-form {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .add-quote-form input {
+    max-width: none;
+    width: 100%;
+  }
+  
+  .add-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .quotation-table table {
+    font-size: 0.9em;
+  }
+  
+  .quotation-table th,
+  .quotation-table td {
+    padding: 1em 0.5em;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.3em;
+  }
+  
+  .save-btn, .cancel-btn, .edit-btn, .delete-btn {
+    font-size: 0.8em;
+    padding: 0.5em 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .quotation-table {
+    padding: 1.5em 1em;
+  }
+  
+  .quotation-table h1 {
+    font-size: 1.8em;
+  }
+  
+  .quotation-table table {
+    font-size: 0.8em;
+  }
 }

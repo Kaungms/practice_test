@@ -1,8 +1,12 @@
-import "./App.css";
 import QuotationTable from "./QuotationTable";
+import "./App.css";
 
 function App() {
-  return <QuotationTable />;
+  return (
+    <div className="app-center">
+      <QuotationTable />
+    </div>
+  );
 }
 
 export default App;
